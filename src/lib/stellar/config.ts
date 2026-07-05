@@ -3,11 +3,18 @@ import { Networks } from "@stellar/stellar-sdk";
 // ─── Network ────────────────────────────────────────────────────────────────
 export const STELLAR_NETWORK = "TESTNET" as const;
 export const HORIZON_URL = "https://horizon-testnet.stellar.org";
+export const SOROBAN_RPC_URL = "https://soroban-testnet.stellar.org";
 export const NETWORK_PASSPHRASE = Networks.TESTNET;
 
-// ─── Reserved Soroban contract (future development) ─────────────────────────
+// ─── Deployed Soroban contract ───────────────────────────────────────────────
+// NotesContract · deployed on Stellar Testnet
+// WASM hash: 0cacf5b4b5dd69e608bc4d1c99f8994a6fbcf174787778be0559cc928162c5c0
 export const CONTRACT_ID =
   "CAM35KLUIZ5L4OYVFZ4XZN7TFKLYVWCR67XWU4LADGYAAR4DIYL4SN7U";
+
+// ─── Campaign goal (configurable) ────────────────────────────────────────────
+// Change this to update the crowdfunding progress bar target
+export const CAMPAIGN_GOAL_XLM = 500;
 
 // ─── Explorer ───────────────────────────────────────────────────────────────
 export const STELLAR_EXPERT_BASE_URL =

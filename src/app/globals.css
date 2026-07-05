@@ -953,3 +953,513 @@ body {
 .animate-delay-2 { animation-delay: 0.1s; }
 .animate-delay-3 { animation-delay: 0.15s; }
 .animate-delay-4 { animation-delay: 0.2s; }
+
+/* ─── Spinner SM ─────────────────────────────────────────────────────────── */
+.spinner-sm {
+  width: 12px;
+  height: 12px;
+  border-width: 1.5px;
+}
+
+/* ─── Btn icon sm ────────────────────────────────────────────────────────── */
+.btn-icon-sm { width: 14px; height: 14px; }
+
+/* ─── Live badge ─────────────────────────────────────────────────────────── */
+.badge-live {
+  margin-left: auto;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #34d399;
+}
+
+/* ─── Wallet type chip ───────────────────────────────────────────────────── */
+.wallet-type-chip {
+  display: inline-block;
+  margin-top: 0.25rem;
+  padding: 0.1rem 0.5rem;
+  background: rgba(99, 120, 255, 0.1);
+  border: 1px solid rgba(99, 120, 255, 0.2);
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--color-primary-light);
+  letter-spacing: 0.04em;
+}
+
+/* ─── Char count ─────────────────────────────────────────────────────────── */
+.char-count {
+  margin-left: auto;
+  font-size: 0.65rem;
+  font-weight: 400;
+  color: var(--color-text-faint);
+}
+
+/* ─── Wallet Picker Modal ────────────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(6, 9, 26, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: fade-up 0.2s ease;
+}
+
+.modal-panel {
+  background: linear-gradient(135deg, rgba(19, 26, 58, 0.98) 0%, rgba(13, 17, 48, 0.99) 100%);
+  border: 1px solid var(--color-border-hover);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(99, 120, 255, 0.1);
+  width: 100%;
+  max-width: 400px;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.modal-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.modal-subtitle {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.modal-close-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s;
+}
+.modal-close-btn svg { width: 12px; height: 12px; }
+.modal-close-btn:hover { background: var(--color-surface-2); color: var(--color-text); }
+
+.wallet-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.wallet-option-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.875rem 1rem;
+  background: rgba(6, 9, 26, 0.5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s, background 0.15s, transform 0.15s;
+  width: 100%;
+  color: var(--color-text);
+}
+
+.wallet-option-btn:hover:not(:disabled) {
+  border-color: var(--color-border-hover);
+  background: rgba(99, 120, 255, 0.06);
+  transform: translateY(-1px);
+}
+
+.wallet-option-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.wallet-option-primary {
+  border-color: rgba(99, 120, 255, 0.35);
+  background: rgba(99, 120, 255, 0.07);
+}
+
+.wallet-option-logo { width: 40px; height: 40px; flex-shrink: 0; border-radius: 10px; }
+
+.wallet-option-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.wallet-option-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.wallet-option-badge {
+  padding: 0.1rem 0.4rem;
+  background: rgba(99, 120, 255, 0.15);
+  border: 1px solid rgba(99, 120, 255, 0.3);
+  border-radius: 4px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--color-primary-light);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.wallet-option-desc {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+}
+
+.wallet-option-arrow { width: 14px; height: 14px; color: var(--color-text-faint); flex-shrink: 0; }
+
+.modal-footer-note {
+  font-size: 0.7rem;
+  color: var(--color-text-faint);
+  text-align: center;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+/* ─── Contract Notes Card ────────────────────────────────────────────────── */
+.contract-notes-card { gap: 0; }
+
+.notes-section { margin-bottom: 1.25rem; }
+
+.notes-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.notes-section-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.notes-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  background: rgba(99, 120, 255, 0.15);
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--color-primary-light);
+}
+
+.notes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  list-style: none;
+  max-height: 220px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+.notes-list::-webkit-scrollbar { width: 4px; }
+.notes-list::-webkit-scrollbar-track { background: transparent; }
+.notes-list::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 2px; }
+
+.note-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: rgba(6, 9, 26, 0.5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color 0.15s;
+}
+
+.note-item:hover { border-color: var(--color-border-hover); }
+
+.note-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.note-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.note-body {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.note-id {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--color-text-faint);
+  margin-top: 2px;
+}
+
+.note-delete-btn {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--color-text-faint);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.note-delete-btn:hover:not(:disabled) {
+  background: var(--color-error-bg);
+  border-color: var(--color-error-border);
+  color: #fca5a5;
+}
+
+.note-delete-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.delete-icon { width: 14px; height: 14px; }
+
+.note-skeleton {
+  height: 60px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(90deg, var(--color-surface) 25%, var(--color-surface-2) 50%, var(--color-surface) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.notes-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem 0;
+  color: var(--color-text-faint);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.notes-empty-icon { width: 28px; height: 28px; opacity: 0.4; }
+
+/* Contract TX result */
+.contract-tx-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 1rem;
+  text-align: center;
+  background: var(--color-success-bg);
+  border: 1px solid var(--color-success-border);
+  color: var(--color-success);
+  animation: pop-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.contract-tx-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.contract-tx-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* Create note form */
+.create-note-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 1.25rem;
+  margin-top: 0.25rem;
+}
+
+.notes-wallet-gate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.25rem 0 0.5rem;
+  color: var(--color-text-faint);
+  font-size: 0.8rem;
+  border-top: 1px solid var(--color-border);
+  margin-top: 0.25rem;
+}
+
+/* ─── Campaign Progress Card ─────────────────────────────────────────────── */
+.campaign-section { margin-bottom: 1.25rem; }
+
+.campaign-icon { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+
+.campaign-progress-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  margin-bottom: 1.25rem;
+}
+
+.campaign-amounts {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.campaign-raised {
+  display: flex;
+  align-items: baseline;
+  gap: 0.375rem;
+}
+
+.campaign-amount-value {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, #fff, #fde68a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+
+.campaign-amount-unit {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.campaign-goal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+  font-size: 0.72rem;
+  color: var(--color-text-faint);
+}
+
+.campaign-pct {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #fbbf24;
+}
+
+.progress-bar-track {
+  width: 100%;
+  height: 8px;
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #f59e0b, #fbbf24, #fde68a);
+  border-radius: 999px;
+  transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+}
+
+.campaign-updated {
+  font-size: 0.65rem;
+  color: var(--color-text-faint);
+}
+
+/* ─── Contributions list ─────────────────────────────────────────────────── */
+.contributions-section { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.contributions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  list-style: none;
+  max-height: 200px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+.contributions-list::-webkit-scrollbar { width: 4px; }
+.contributions-list::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 2px; }
+
+.contribution-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.625rem 0.75rem;
+  background: rgba(6, 9, 26, 0.4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  transition: border-color 0.15s;
+}
+
+.contribution-row:hover { border-color: var(--color-border-hover); }
+
+.contribution-from {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.contribution-time {
+  font-size: 0.65rem;
+  color: var(--color-text-faint);
+}
+
+.contribution-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.contribution-amount {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #fbbf24;
+  font-family: var(--font-mono);
+}
+

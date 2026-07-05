@@ -2,6 +2,7 @@ import WalletCard from "@/components/WalletCard";
 import BalanceCard from "@/components/BalanceCard";
 import SendPaymentForm from "@/components/SendPaymentForm";
 import UmkmInfoCard from "@/components/UmkmInfoCard";
+import CampaignProgressCard from "@/components/CampaignProgressCard";
 
 export default function HomePage() {
   return (
@@ -49,8 +50,13 @@ export default function HomePage() {
             <BalanceCard />
           </div>
 
+          {/* Campaign Progress */}
+          <div className="campaign-section animate-fade-up animate-delay-2">
+            <CampaignProgressCard />
+          </div>
+
           {/* Send Payment */}
-          <div className="payment-section animate-fade-up animate-delay-2">
+          <div className="payment-section animate-fade-up animate-delay-3">
             <SendPaymentForm />
           </div>
 

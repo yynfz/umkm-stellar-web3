@@ -1,6 +1,6 @@
 "use client";
 
-import { CONTRACT_ID, STELLAR_EXPERT_BASE_URL } from "@/lib/stellar/config";
+import ContractNotesCard from "./ContractNotesCard";
 
 const UMKM_STATS = [
   {
@@ -38,10 +38,6 @@ const UMKM_STATS = [
     ),
   },
 ];
-
-function truncate(str: string, start = 10, end = 8): string {
-  return `${str.slice(0, start)}…${str.slice(-end)}`;
-}
 
 export default function UmkmInfoCard() {
   return (
@@ -83,56 +79,8 @@ export default function UmkmInfoCard() {
         </p>
       </div>
 
-      {/* ── Soroban Contract ── */}
-      <div className="card glass-card contract-card">
-        <div className="card-header">
-          <div className="card-icon contract-icon">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="icon">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M14 2v6h6M16 13H8m8 4H8m2-8H8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
-          <div>
-            <h2 className="card-title">UMKM Profit-Sharing Contract</h2>
-            <p className="card-subtitle">Soroban</p>
-          </div>
-          <span className="badge badge-coming-soon">Coming Soon</span>
-        </div>
-
-        <div className="contract-body">
-          <div className="contract-field">
-            <span className="contract-field-label">Contract ID</span>
-            <div className="contract-id-block">
-              <code className="contract-id" title={CONTRACT_ID}>
-                {truncate(CONTRACT_ID, 12, 8)}
-              </code>
-              <a
-                href={`${STELLAR_EXPERT_BASE_URL}/contract/${CONTRACT_ID}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-icon-only"
-                title="View on Stellar Expert"
-                aria-label="View contract on Stellar Expert"
-              >
-                <svg viewBox="0 0 16 16" fill="none" className="external-icon" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M6 3H3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-3M9 2h4m0 0v4m0-4L8 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </a>
-            </div>
-          </div>
-
-          <div className="contract-field">
-            <span className="contract-field-label">Network</span>
-            <span className="badge badge-testnet">TESTNET</span>
-          </div>
-        </div>
-
-        <p className="contract-disclaimer">
-          This Soroban contract ID is reserved for future implementation of transparent,
-          on-chain UMKM revenue-sharing and profit distribution logic. No contract is
-          currently deployed.
-        </p>
-      </div>
+      {/* ── Soroban Contract (Live) ── */}
+      <ContractNotesCard />
     </div>
   );
 }
