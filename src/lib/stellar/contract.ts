@@ -122,8 +122,7 @@ export async function buildCreateNoteTx(
 
   let account: Account;
   try {
-    const ledgerAccount = await server.getAccount(publicKey);
-    account = new Account(publicKey, ledgerAccount.sequence);
+    account = await server.getAccount(publicKey);
   } catch {
     throw "INSUFFICIENT_XLM" as ContractError;
   }
@@ -166,8 +165,7 @@ export async function buildDeleteNoteTx(
 
   let account: Account;
   try {
-    const ledgerAccount = await server.getAccount(publicKey);
-    account = new Account(publicKey, ledgerAccount.sequence);
+    account = await server.getAccount(publicKey);
   } catch {
     throw "INSUFFICIENT_XLM" as ContractError;
   }

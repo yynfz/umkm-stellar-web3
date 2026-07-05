@@ -18,7 +18,6 @@ interface Contribution {
   from: string;
   amount: string;
   timestamp: string;
-  ledger: number;
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -86,7 +85,6 @@ export default function CampaignProgressCard() {
             from: op.from,
             amount: op.amount,
             timestamp: op.created_at,
-            ledger: op.transaction?.ledger ?? 0,
           });
         }
       }

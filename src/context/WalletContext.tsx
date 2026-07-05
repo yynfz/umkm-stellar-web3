@@ -169,7 +169,7 @@ interface WalletContextValue extends WalletState {
   /** Connect using Freighter directly (legacy path) */
   connect: () => Promise<void>;
   /** Connect using StellarWalletsKit multi-wallet picker */
-  connectWithKit: () => Promise<void>;
+  connectWithKit: (walletId: string) => Promise<void>;
   disconnect: () => void;
   refreshBalance: () => Promise<void>;
   sendPayment: (destination: string, amount: string, memo?: string) => Promise<void>;
@@ -234,10 +234,10 @@ export function WalletContextProvider({
 
   // ── Connect: StellarWalletsKit (multi-wallet picker) ──
 
-  const connectWithKit = useCallback(async () => {
+  const connectWithKit = useCallback(async (walletId: string) => {
     dispatch({ type: "CONNECT_START" });
     try {
-      const publicKey = await connectViaKit();
+      const publicKey = await connectViaKit(walletId);
       dispatch({ type: "CONNECT_SUCCESS", publicKey, walletType: "kit" });
       dispatch({ type: "BALANCE_LOADING" });
       try {

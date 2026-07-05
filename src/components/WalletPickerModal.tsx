@@ -86,7 +86,7 @@ export default function WalletPickerModal({ isOpen, onClose }: WalletPickerModal
     if (walletId === "freighter") {
       await connect();
     } else {
-      await connectWithKit();
+      await connectWithKit(walletId);
     }
     onClose();
   };

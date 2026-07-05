@@ -6,7 +6,7 @@
  * Docs: https://stellarwalletskit.dev
  */
 
-import type { IStellarWalletsKit } from "@creit.tech/stellar-wallets-kit";
+import type { StellarWalletsKit } from "@creit.tech/stellar-wallets-kit";
 import { NETWORK_PASSPHRASE, STELLAR_NETWORK } from "./config";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -21,36 +21,32 @@ export type WalletKitError =
 // ─── Lazy-loaded kit singleton ────────────────────────────────────────────────
 // We lazy-import to avoid SSR issues in Next.js (StellarWalletsKit is client-only).
 
-let _kitInstance: IStellarWalletsKit | null = null;
+let _kitInstance: typeof StellarWalletsKit | null = null;
 
-export async function getWalletsKit(): Promise<IStellarWalletsKit> {
+export async function getWalletsKit(): Promise<typeof StellarWalletsKit> {
   if (_kitInstance) return _kitInstance;
 
-  const {
-    StellarWalletsKit,
-    WalletNetwork,
-    FREIGHTER_ID,
-    FreighterModule,
-    xBullModule,
-    LobstrModule,
-  } = await import("@creit.tech/stellar-wallets-kit");
+  const { StellarWalletsKit, Networks } = await import("@creit.tech/stellar-wallets-kit");
+  const { FreighterModule, FREIGHTER_ID } = await import("@creit.tech/stellar-wallets-kit/modules/freighter");
+  const { xBullModule } = await import("@creit.tech/stellar-wallets-kit/modules/xbull");
+  const { LobstrModule } = await import("@creit.tech/stellar-wallets-kit/modules/lobstr");
 
   const network =
     STELLAR_NETWORK === "TESTNET"
-      ? WalletNetwork.TESTNET
-      : WalletNetwork.PUBLIC;
+      ? Networks.TESTNET
+      : Networks.PUBLIC;
 
-  _kitInstance = new StellarWalletsKit({
+  StellarWalletsKit.init({
     network,
-    // Freighter is listed first → it becomes the default/selected wallet
-    selectedWalletId: FREIGHTER_ID,
     modules: [
       new FreighterModule(),
       new xBullModule(),
       new LobstrModule(),
     ],
   });
+  StellarWalletsKit.setWallet(FREIGHTER_ID);
 
+  _kitInstance = StellarWalletsKit;
   return _kitInstance;
 }
 
@@ -66,33 +62,19 @@ export function resetWalletsKit(): void {
  * Resolves with the connected public key.
  * Freighter is pre-selected but the user can switch.
  */
-export async function connectViaKit(): Promise<string> {
+export async function connectViaKit(walletId: string): Promise<string> {
   const kit = await getWalletsKit();
-
-  return new Promise((resolve, reject) => {
-    kit.openModal({
-      onWalletSelected: async (option) => {
-        try {
-          kit.setWallet(option.id);
-          const { address } = await kit.getAddress();
-          if (!address) {
-            reject("ACCESS_DENIED" as WalletKitError);
-            return;
-          }
-          resolve(address);
-        } catch (err) {
-          console.error("Wallet selection error:", err);
-          reject("ACCESS_DENIED" as WalletKitError);
-        }
-      },
-      onClosed: (err) => {
-        if (err) {
-          reject("ACCESS_DENIED" as WalletKitError);
-        }
-        // If user just closed without selecting, resolve with nothing → caller handles
-      },
-    });
-  });
+  try {
+    kit.setWallet(walletId);
+    const { address } = await kit.fetchAddress();
+    if (!address) {
+      throw new Error("No address returned");
+    }
+    return address;
+  } catch (err) {
+    console.error("Wallet selection error:", err);
+    throw "ACCESS_DENIED" as WalletKitError;
+  }
 }
 
 // ─── Sign ─────────────────────────────────────────────────────────────────────

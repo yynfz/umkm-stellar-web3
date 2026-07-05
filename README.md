@@ -11,6 +11,14 @@
 
 ## About
 
+This project uses **Next.js 14**, **React 18**, and **@stellar/stellar-sdk** to connect to the Stellar Testnet. It implements modern Web3 design patterns specifically tailored for the Stellar ecosystem.
+
+### Features
+- **Stellar Wallets Kit Integration**: Support for multiple wallets including Freighter (Default), xBull, and Lobstr.
+- **Soroban Smart Contract Interoperability**: Direct reads/writes to a deployed NotesContract on Soroban Testnet.
+- **Horizon API Polling**: Live on-chain analytics parsing real-time transaction history for the UMKM address.
+- **Responsive Web3 Design**: Glassmorphic UI with micro-animations.
+
 `umkm-stellar-web3` is a minimal Stellar-native dApp built for the **Stellar Journey to Mastery** challenge by Rise In × Stellar Development Foundation.
 
 It demonstrates the four required flows while piloting UX for a future UMKM-focused crowdfunding and on-chain profit-sharing platform targeting Indonesian Micro, Small & Medium Enterprises (UMKM/MSMEs).
